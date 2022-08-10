@@ -9,7 +9,8 @@ Build a simple spring container that responds to a request for the Top Ten New n
 
 So it's a spring server that listens for requests, and on each request, the server calls an API service over HTTP, retrieving the latest news stories.
 
-Fortunately, this API does not require the creation of an API key.
+Fortunately, this API does not require the creation of an API key. 
+See `https://github.com/HackerNews/API` for more.
 
 ## the simple REST stuff in Spring
 
