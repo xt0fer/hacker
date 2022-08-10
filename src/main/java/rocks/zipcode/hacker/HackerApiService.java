@@ -7,9 +7,12 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class HackerApi {
+public class HackerApiService {
+    // class to fetch JSON strings about current New stories on HackerNews
     private final String getNewUrl = "https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty";
     private final String getStoryUrlTempl = "https://hacker-news.firebaseio.com/v0/item/%s.json?print=pretty";
 
@@ -20,20 +23,12 @@ public class HackerApi {
     }
 
     private String getNewTenItems() {
-        String[] allItems = this.getAllItems();
-
-        StringBuilder tenItems = new StringBuilder();
-        int j = 0;
-        for (String s : allItems) {
-            if (s.length() == 0) continue;
-            String t = getItem(s);
-            // System.err.printf("%d: [%s] [%s] \n", j, s, convertStringToHex(t));
-            tenItems.append(t);
-            j++;
-            
-            if (j == 10) break;
+        String[] tenItems = Arrays.copyOfRange(this.getAllItems(), 0, 10);
+        ArrayList<String> result = new ArrayList<>();
+        for (String s : tenItems) {
+            result.add(this.getItem(s));
         }
-        return "[ " + tenItems.toString() + " ]\n";
+        return "[ " + String.join(",\n", result) + " ]\n";
     }
 
     private String[] getAllItems() {
@@ -41,8 +36,9 @@ public class HackerApi {
         String[] items = allItemsString.replace('[',' ')
             .replace(']',' ')
             .replace(',',' ')
+            .replaceAll(" +", " ")
             .trim()
-            .split(" ");        
+            .split(" ");
         return items;
     }
 
@@ -64,7 +60,6 @@ public class HackerApi {
                 .collect(Collectors.joining("\n"));
             return text;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return "";
@@ -72,7 +67,7 @@ public class HackerApi {
 
 // just a little test.
     public static void main(String[] args) {
-        HackerApi h = new HackerApi();
+        HackerApiService h = new HackerApiService();
 
         System.out.println("and now...");
         System.out.println(h.getNewTen());
