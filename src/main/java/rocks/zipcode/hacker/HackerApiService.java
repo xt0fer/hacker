@@ -17,12 +17,6 @@ public class HackerApiService {
     private final String getStoryUrlTempl = "https://hacker-news.firebaseio.com/v0/item/%s.json?print=pretty";
 
     public String getNewTen() {
-        StringBuilder result = new StringBuilder();
-        result.append(this.getNewTenItems());
-        return result.toString();
-    }
-
-    private String getNewTenItems() {
         String[] tenItems = Arrays.copyOfRange(this.getAllItems(), 0, 10);
         ArrayList<String> result = new ArrayList<>();
         for (String s : tenItems) {
