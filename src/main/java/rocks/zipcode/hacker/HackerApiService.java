@@ -42,6 +42,8 @@ public class HackerApiService {
         return this.getStringFromURL(filledUrl);
     }
 
+    // takes String as a URL
+    // returns a String of the GET'd result
     private String getStringFromURL(String urlString) {
         URL url;
         try {
