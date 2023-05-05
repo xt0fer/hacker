@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+
+// this class calls the API services of HackerNews.
+// getNewTen() is the instance method we want to call from NewsController.java
 public class HackerApiService {
     // class to fetch JSON strings about current New stories on HackerNews
     private final String getNewUrl = "https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty";
@@ -62,7 +65,7 @@ public class HackerApiService {
         return "";
     }
 
-    // just a little test. use the HackerApplication class for running.
+    // just a little test of the getNewTen() method. use the HackerApplication class for running in Spring.
     public static void main(String[] args) {
         HackerApiService h = new HackerApiService();
 
