@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Hacker News Kristofer</title>
+</head>
+
+<body>
+
+  <h1>News</h1>
+  <section id="section">
+    <div id='posts'></div>
+  </section>
+</body>
+
+<script>
+  const API_URL = `http://localhost:8080`
+
+  function fetchData() {
+    fetch(`${API_URL}/news`)
+    .then((res) => {
+      //console.log("res is ", Object.prototype.toString.call(res));
+      return res.json();
+    })
+    .then((data) => {
+      //console.log("data is", Object.prototype.toString.call(data))
+      //console.log(data)
+      let output = '<h2">Last 10 Stories</h2>'
+      data.forEach(function (item) {
+        output += `
+        <ul>
+          <li>Title: ${item.title}</li>
+        </ul>
+      `
+      })
+      document.getElementById('posts').innerHTML = output
+    })
+    .catch((error) => {
+      console.log(`Error Fetching data : ${error}`)
+      document.getElementById('posts').innerHTML = 'Error Loading Data'
+    })
+}
+
+fetchData()
+
+</script>
+
+</html>

@@ -15,9 +15,15 @@ public class NewsController {
 	private final AtomicLong counter = new AtomicLong();
     HackerApiService news = new HackerApiService();
 
-	@GetMapping("/news")
+	@GetMapping("/sample")
 	public NewsPOJO news(@RequestParam(value = "kind", defaultValue = "New Top 10") String name) {
 		return new NewsPOJO(counter.incrementAndGet(), String.format(template, news.getNewTen()));
+	}
+
+	@GetMapping("/news")
+    @ResponseBody
+	public String getjson(@RequestParam(value = "kind", defaultValue = "New Top 10") String name) {
+		return String.format(template, news.getNewTen());
 	}
 
     @GetMapping("/pretty")
@@ -26,6 +32,6 @@ public class NewsController {
 		return String.format(htmltemplate, news.getNewTen());
 	}
 
-
+// put index2.html in resources/static for spring to find and resolve the HTML file.
 
 }
