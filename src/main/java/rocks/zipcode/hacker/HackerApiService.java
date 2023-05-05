@@ -61,7 +61,7 @@ public class HackerApiService {
         return "";
     }
 
-// just a little test.
+// just a little test. use the HackerApplication class for running.
     public static void main(String[] args) {
         HackerApiService h = new HackerApiService();
 
