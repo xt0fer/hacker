@@ -26,7 +26,7 @@ So it's a spring server that listens for requests, and on each request, the serv
 Fortunately, this API does not require the creation of an API key. 
 See `https://github.com/HackerNews/API` for more.
 
-![](./hacker-vanilla-JS-arch.png | width=100)
+![](./hacker-vanilla-JS-arch.png)
 
 ## the simple REST stuff in Spring
 
