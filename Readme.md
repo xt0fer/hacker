@@ -32,7 +32,10 @@ See `https://github.com/HackerNews/API` for more.
 
 The very simple POJO, and it's controller. Three URLS, one produces a simple JSON string, the second an HTML response and a third produces JSON.
 
-## a Very Simple Vanilla JaveScript front end.
+## a Very Simple Vanilla JavaScript front end.
+
+This UI uses *only* standard javascript, no angular, react or vue. It also uses very simple CSS to make a clean page.
+All the "front-end" code in is news.html, app.js, and koley.css
 
 Using the browser's main `fetch().then().catch()` methods. These make it really easy to fetch from a REST API in a
 small piece of javascript. See `resources/static/news.html`
