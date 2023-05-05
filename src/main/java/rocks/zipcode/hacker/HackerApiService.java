@@ -27,17 +27,18 @@ public class HackerApiService {
 
     private String[] getAllItems() {
         String allItemsString = this.getStringFromURL(getNewUrl);
-        String[] items = allItemsString.replace('[',' ')
-            .replace(']',' ')
-            .replace(',',' ')
-            .replaceAll(" +", " ")
-            .trim()
-            .split(" ");
+        String[] items = allItemsString.replace('[', ' ')
+                .replace(']', ' ')
+                .replace(',', ' ')
+                .replaceAll(" +", " ")
+                .trim()
+                .split(" ");
         return items;
     }
 
     private String getItem(String itemName) {
-        if (itemName.length() == 0) return "empty";
+        if (itemName.length() == 0)
+            return "empty";
         String filledUrl = String.format(getStoryUrlTempl, itemName);
         return this.getStringFromURL(filledUrl);
     }
@@ -51,9 +52,9 @@ public class HackerApiService {
             URLConnection conn = url.openConnection();
             InputStream is = conn.getInputStream();
             String text = new BufferedReader(
-            new InputStreamReader(is, StandardCharsets.UTF_8))
-                .lines()
-                .collect(Collectors.joining("\n"));
+                    new InputStreamReader(is, StandardCharsets.UTF_8))
+                    .lines()
+                    .collect(Collectors.joining("\n"));
             return text;
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,7 +62,7 @@ public class HackerApiService {
         return "";
     }
 
-// just a little test. use the HackerApplication class for running.
+    // just a little test. use the HackerApplication class for running.
     public static void main(String[] args) {
         HackerApiService h = new HackerApiService();
 
@@ -70,15 +71,15 @@ public class HackerApiService {
     }
 
     // private String convertStringToHex(String str) {
-    //     StringBuilder stringBuilder = new StringBuilder();
+    // StringBuilder stringBuilder = new StringBuilder();
 
-    //     char[] charArray = str.toCharArray();
+    // char[] charArray = str.toCharArray();
 
-    //     for (char c : charArray) {
-    //         String charToHex = Integer.toHexString(c);
-    //         stringBuilder.append(charToHex);
-    //     }
+    // for (char c : charArray) {
+    // String charToHex = Integer.toHexString(c);
+    // stringBuilder.append(charToHex);
+    // }
 
-    //     return stringBuilder.toString();
+    // return stringBuilder.toString();
     // }
 }
