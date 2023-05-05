@@ -26,17 +26,7 @@
       return res.json();
     })
     .then((data) => {
-      //console.log("data is", Object.prototype.toString.call(data))
-      //console.log(data)
-      let output = '<h2">Last 10 Stories</h2>'
-      data.forEach(function (item) {
-        output += `
-        <ul>
-          <li>Title: ${item.title}</li>
-        </ul>
-      `
-      })
-      document.getElementById('posts').innerHTML = output
+      show(data)
     })
     .catch((error) => {
       console.log(`Error Fetching data : ${error}`)
@@ -44,6 +34,24 @@
     })
 }
 
+function show(data) {
+    const ul = document.getElementById('posts');
+    const list = document.createDocumentFragment();
+
+    data.map(function (post) {
+        let li = document.createElement('li');
+        let title = document.createElement('h2');
+        let body = document.createElement('p');
+        title.innerHTML = `<a href="${post.url}">${post.title}</a>`;
+        body.innerHTML = `${post.url}`;
+
+        li.appendChild(title);
+        li.appendChild(body);
+        list.appendChild(li);
+    });
+
+    ul.appendChild(list);
+}
 fetchData()
 
 </script>

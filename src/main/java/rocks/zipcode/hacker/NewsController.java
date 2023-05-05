@@ -12,12 +12,11 @@ public class NewsController {
 
 	private static final String template = "%s";
 	private static final String htmltemplate = "<html><body><pre>%s</pre></body></html>";
-	private final AtomicLong counter = new AtomicLong();
     HackerApiService news = new HackerApiService();
 
 	@GetMapping("/sample")
 	public NewsPOJO news(@RequestParam(value = "kind", defaultValue = "New Top 10") String name) {
-		return new NewsPOJO(counter.incrementAndGet(), String.format(template, news.getNewTen()));
+		return new NewsPOJO(String.format(template, news.getNewTen()));
 	}
 
 	@GetMapping("/news")
